@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
-import { Vehicle } from './model/vehicle.model';
+import { VehicleMapService } from './vehicle-map.service';
+import { Card } from '../shared/card-module/card/card.model';
 
 @Component({
   selector: 'app-vehicle-list-main',
@@ -7,12 +8,12 @@ import { Vehicle } from './model/vehicle.model';
   styleUrls: ['./vehicle-list-main.component.scss']
 })
 export class VehicleListMainComponent {
-  vehicles: Array<Vehicle> = [];
+  vehicles: Array<Card> = [];
 
-  constructor() {
+  constructor(private dataService: VehicleMapService) {
   }
 
-  ngOnInit(){
-    this.vehicles = vehicles;
+  ngOnInit() {
+    this.vehicles = this.dataService.vehiclesCards;
   }
 }

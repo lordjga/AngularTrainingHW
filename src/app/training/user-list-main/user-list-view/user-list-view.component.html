@@ -1,20 +1,12 @@
 <div>
-    <label>{{label}}</label>
-    <div>
-        <mat-checkbox [(ngModel)]="isShowOnlyActivated">
-            Show only activated users
-        </mat-checkbox>
-    </div>
+    <h1>{{label}}</h1>
 
     <ul>
         <ng-container *ngFor="let user of users">
-            <li *ngIf="isShowUser(user.activated)">
-                <div class="inlineDiv" [appHighlight]="'gray'" [isHighlight]="user.age>=18">
-                    <app-user-card [user]="user" (deleteClick)="delete(user)">
-                        <div class="title"> 
-                            <p>User card title from parent component: {{ user.firstName | fullName : user.lastName }}</p>
-                        </div>
-                    </app-user-card>
+            <li>
+                <div class="inlineDiv">
+                    <app-card [card]="user" (deleteClick)="delete($event)" (favorClick)="addToFavor($event)">
+                    </app-card>
                 </div>
             </li>
         </ng-container>

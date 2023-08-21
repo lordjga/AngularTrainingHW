@@ -1,15 +1,12 @@
 <div>
-    <label>{{label}}</label>
+    <h1>{{label}}</h1>
 
     <ul>
         <ng-container *ngFor="let vehicle of vehicles">
             <li>
                 <div class="inlineDiv">
-                    <!-- <app-user-card [user]="user" (deleteClick)="delete(user)">
-                        <div class="title"> 
-                            <p>User card title from parent component: {{ user.firstName | fullName : user.lastName }}</p>
-                        </div>
-                    </app-user-card> -->
+                    <app-card [card]="vehicle" (deleteClick)="delete($event)" (favorClick)="addToFavor($event)">
+                    </app-card>
                 </div>
             </li>
         </ng-container>

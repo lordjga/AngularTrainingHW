@@ -3,7 +3,14 @@
     "",
     "\\src",
     "\\src\\app",
-    "\\src\\app\\training"
+    "\\src\\app\\training",
+    "\\src\\app\\training\\shared",
+    "\\src\\app\\training\\shared\\card-module",
+    "\\src\\app\\training\\shared\\card-module\\card",
+    "\\src\\app\\training\\shared\\card-module\\favorite-list",
+    "\\src\\app\\training\\vehicle-list-main",
+    "\\src\\app\\training\\vehicle-list-main\\vehicle-list-view"
   ],
+  "SelectedNode": "\\src\\app\\training\\shared\\card-module\\favorite-list\\favorite-list.component.ts",
   "PreviewInSolutionExplorer": false
 }

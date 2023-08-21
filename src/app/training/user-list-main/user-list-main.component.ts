@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { User, Gender } from './model/user.model';
-import { OrderByCreationDatePipe } from '../shared/pipes/order-by-creation-date.pipe';
-import { users } from './model/user-data';
+import { Card } from '../shared/card-module/card/card.model';
+import { UserMapService } from './user-map.service';
 
 @Component({
   selector: 'app-user-list-main',
@@ -9,13 +8,12 @@ import { users } from './model/user-data';
   styleUrls: ['./user-list-main.component.css']
 })
 export class UserListMainComponent implements OnInit {
-  users: Array<User> = [];
+  users: Array<Card> = [];
 
-  constructor(private orderByCreationDatePipe: OrderByCreationDatePipe) {
-  }
+  constructor(private dataService: UserMapService) { }
 
-  ngOnInit(){
-    this.users = this.orderByCreationDatePipe.transform(users);
+  ngOnInit() {
+    this.users = this.dataService.usersCards;
   }
 
 }

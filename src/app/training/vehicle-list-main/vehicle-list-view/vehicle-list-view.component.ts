@@ -1,5 +1,6 @@
 import { Component, Input } from '@angular/core';
-import { Vehicle } from '../model/vehicle.model';
+import { Card } from '../../shared/card-module/card/card.model';
+import { FavoriteService } from '../../shared/card-module/favorite-list/favorite.service';
 
 @Component({
   selector: 'app-vehicle-list-view',
@@ -7,11 +8,19 @@ import { Vehicle } from '../model/vehicle.model';
   styleUrls: ['./vehicle-list-view.component.scss']
 })
 export class VehicleListViewComponent {
-  @Input() vehicles: Array<Vehicle> = [];
+  @Input() vehicles: Array<Card> = [];
 
   label: string = 'Vehicle list View Component';
+  constructor(private favoriteService: FavoriteService) {
+  }
 
-  delete(vehicle: Vehicle) {
-    delete this.vehicles[this.vehicles.indexOf(vehicle)];
+  delete(vehicle: Card) {
+    var index = this.vehicles.indexOf(vehicle)
+    if (index > -1) {
+      this.vehicles.splice(index, 1);
+    }
+  }
+  addToFavor(vehicle: Card) {
+    this.favoriteService.addToFavor(vehicle);
   }
 }
