@@ -1,11 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Card } from '../card/card.model';
 
-@Injectable(
-  //{
-  //providedIn: 'root'
-  //}
-)
+@Injectable()
 export class FavoriteService {
   private favorCards: Array<Card> = [];
   constructor() { }

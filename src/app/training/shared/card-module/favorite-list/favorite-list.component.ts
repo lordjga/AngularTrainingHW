@@ -6,8 +6,6 @@ import { FavoriteService } from './favorite.service';
   selector: 'app-favorite-list',
   templateUrl: './favorite-list.component.html',
   styleUrls: ['./favorite-list.component.scss']
-  //,
-  //providers: [FavoriteService]
 })
 export class FavoriteListComponent implements OnInit {
   favorites: Array<Card> = [];

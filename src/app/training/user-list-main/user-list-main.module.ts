@@ -9,6 +9,7 @@ import {FormsModule} from '@angular/forms';
 import { FullNamePipe } from '../shared/pipes/full-name.pipe';
 import { OrderByCreationDatePipe } from '../shared/pipes/order-by-creation-date.pipe';
 import { CardModule } from '../shared/card-module/card.module';
+import { FavoriteService } from '../shared/card-module/favorite-list/favorite.service';
 
 @NgModule({
   declarations: [
