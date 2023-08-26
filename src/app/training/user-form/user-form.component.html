@@ -4,26 +4,53 @@
       <mat-form-field>
         <mat-label for="firstName">First Name: </mat-label>
         <input matInput type="text" name="firstName" formControlName="firstName">
+        <mat-error *ngIf="userFormGroup.get('firstName')?.hasError('required')">
+          First Name is <strong>required</strong>
+        </mat-error>
       </mat-form-field>
 
       <mat-form-field>
         <mat-label for="lastName">Last Name: </mat-label>
         <input matInput type="text" name="lastName" formControlName="lastName">
+        <mat-error *ngIf="userFormGroup.get('lastName')?.hasError('required')">
+          Last Name is <strong>required</strong>
+        </mat-error>
       </mat-form-field>
 
       <mat-form-field>
         <mat-label for="age">Age: </mat-label>
         <input matInput type="number" name="age" formControlName="age">
+        <mat-error *ngIf="userFormGroup.get('age')?.hasError('required')">
+          Age is <strong>required</strong>
+        </mat-error>
+        <mat-error *ngIf="userFormGroup.get('age')?.hasError('max') || userFormGroup.get('age')?.hasError('min')">
+          Wrong <strong>count</strong>
+        </mat-error>
       </mat-form-field>
 
       <mat-form-field>
         <mat-label for="company">Company: </mat-label>
         <input matInput type="text" name="company" formControlName="company">
+        <mat-error *ngIf="userFormGroup.get('company')?.errors?.['maxlength']">
+          Wrong company name <strong>length</strong>
+        </mat-error>
       </mat-form-field>
 
       <mat-form-field>
         <mat-label for="email">Email: </mat-label>
         <input matInput type="email" name="email" formControlName="email">
+        <mat-error *ngIf="userFormGroup.get('email')?.hasError('email')">
+          Please enter a valid <strong>email address</strong>
+        </mat-error>
+        <mat-error *ngIf="userFormGroup.get('email')?.hasError('gmailDomain')">
+          Please enter a valid <strong>domain</strong>
+        </mat-error>
+        <mat-error *ngIf="userFormGroup.get('email')?.hasError('required')">
+          Email is <strong>required</strong>
+        </mat-error>
+        <mat-error *ngIf="userFormGroup.get('email')?.hasError('uniqEmail')">
+          Email already <strong>exists</strong>
+        </mat-error>
       </mat-form-field>
 
       <mat-form-field>
@@ -41,8 +68,6 @@
             <mat-radio-button *ngFor="let gender of GenderValues" [value]="gender">
               {{gender}}
             </mat-radio-button>
-            <!--<mat-radio-button value="Gender.male" color="primary">Male</mat-radio-button>
-            <mat-radio-button value="Gender.female" color="primary">Female</mat-radio-button>-->
           </mat-radio-group>
         </div>
       </div>
@@ -55,5 +80,6 @@
       </div>
     </div>
   </ng-container>
+  <mat-error *ngIf="userFormGroup.hasError">From isn't valid</mat-error>
   <button mat-stroked-button (click)="getFormGroupValue()">Save</button>
 </section>

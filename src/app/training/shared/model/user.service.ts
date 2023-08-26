@@ -17,6 +17,10 @@ export class UserService {
     return this.users;
   }
 
+  async getUserDataAsync(): Promise<User[]> {
+    return this.users;
+  }
+
   AddNewUser(user: User) {
     this.users.push(user);
   }

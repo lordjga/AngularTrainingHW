@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { AbstractControl, AsyncValidatorFn, FormControl, FormGroup, ValidationErrors, ValidatorFn, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { departments, Gender, User } from '../shared/model/user.model';
 import { UserService } from '../shared/model/user.service';
@@ -12,28 +12,33 @@ import { UserService } from '../shared/model/user.service';
 })
 export class UserFormComponent {
   departments = departments;
-   Gender = Gender;
-   GenderValues = Object.values(Gender).filter(e => typeof (e) !== 'number');
+  Gender = Gender;
+  GenderValues = Object.values(Gender).filter(e => typeof (e) !== 'number');
 
   constructor(private router: Router,
-    private route: ActivatedRoute,
     private userService: UserService) { }
 
   public userFormGroup = new FormGroup({
-    firstName: new FormControl(''),
-    lastName: new FormControl(''),
-    age: new FormControl(0),
-    company: new FormControl(''),
-    email: new FormControl(''),
+    firstName: new FormControl('', [Validators.required]),
+    lastName: new FormControl('', [Validators.required]),
+    age: new FormControl(0, [Validators.required, Validators.min(15), Validators.max(100)]),
+    company: new FormControl('', [Validators.maxLength(35)]),
+    email: new FormControl('', [Validators.required, Validators.email, this.gmailDomainValidator()], [this.uniqEmailValidator()]),
     department: new FormControl(),
-    gender: new FormControl(),
+    gender: new FormControl(Gender.male, [Validators.required]),
     activated: new FormControl()
   })
 
   public getFormGroupValue(): void {
     console.log('Form Group Raw value:', this.userFormGroup.getRawValue())
-    this.userService.AddNewUser(this.convertFormGroupToUser());
-    this.redirectToUserListPage();
+
+    if (!this.userFormGroup.invalid) {
+      this.userService.AddNewUser(this.convertFormGroupToUser());
+      this.redirectToUserListPage();
+    }
+    else {
+      this.validateForm();
+    }
   }
 
   private convertFormGroupToUser(): User {
@@ -55,5 +60,30 @@ export class UserFormComponent {
 
   private redirectToUserListPage(): void {
     this.router.navigate(['user-list'])
+  }
+
+  validateForm() {
+    if (this.userFormGroup.invalid) {
+      this.userFormGroup.markAllAsTouched();
+      return;
+    }
+  }
+
+  gmailDomainValidator(): ValidatorFn {
+    return (control: AbstractControl): ValidationErrors | null => {
+      if (!control.value) return null;
+
+      return !control.value.toString().includes('@gmail.com') ? { gmailDomain: true } : null;
+    }
+  }
+
+  uniqEmailValidator(): AsyncValidatorFn {
+    return (control: AbstractControl): Promise<ValidationErrors | null> => {
+      return this.userService.getUserDataAsync().then(
+        users => {
+          return users.some(x => x.email == control.value.toString()) ? { uniqEmail: true } : null;
+        }
+      );
+    }
   }
 }
