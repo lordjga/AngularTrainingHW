@@ -1,4 +1,60 @@
 /* You can add global styles to this file, and also import other style files */
 
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+@import "@angular/material";
+@import "assets/styles/modal";
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+  background: #f5f5f5;
+}
+
+
+ul,
+li,
+ol {
+  margin: 0;
+  padding: 0;
+}
+
+app-training-container section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 10px;
+  margin: 15px;
+  border: 1px solid grey;
+
+  button, input, textarea, .example-error-message {
+    display: block;
+    margin-bottom: 10px;
+  }
+
+  .mat-mdc-form-field {
+    display: block;
+
+    input {
+      margin-bottom: 0px;
+    }
+  }
+
+  button {
+    margin: 10px auto;
+  }
+
+  .example-element {
+    border: 2px solid sandybrown;
+    margin: 15px;
+    padding: 15px;
+  }
+
+  .example-error-message {
+    color: red;
+  }
+}

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Card } from '../shared/card-module/card/card.model';
 import { UserMapService } from './user-map.service';
 import { FavoriteService } from '../shared/card-module/favorite-list/favorite.service';
+import { UserService } from '../shared/model/user.service';
 
 @Component({
   selector: 'app-user-list-main',
@@ -10,12 +11,17 @@ import { FavoriteService } from '../shared/card-module/favorite-list/favorite.se
   ,providers:[FavoriteService]
 })
 export class UserListMainComponent implements OnInit {
-  users: Array<Card> = [];
+  usersCards: Array<Card> = [];
 
-  constructor(private dataService: UserMapService) { }
+  constructor(
+    private dataService: UserMapService,
+    private userService: UserService) { }
 
   ngOnInit() {
-    this.users = this.dataService.usersCards;
+    //this.usersCards = this.dataService.convertUsersToCards(this.userService.getUserData);
   }
 
+  get getUsersCards(): Array<Card> {
+    return this.dataService.convertUsersToCards(this.userService.getUserData);
+  }
 }

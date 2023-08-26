@@ -1,23 +1,20 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
-import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { UserListMainModule } from './training/user-list-main/user-list-main.module';
-import { VehicleListMainModule } from './training/vehicle-list-main/vehicle-list-main.module';
+import { TrainingModule } from './training/training.module';
+import { TrainingRoutingModule } from './training/training-routing.module';
 
 @NgModule({
   declarations: [
-    AppComponent,
-
+    AppComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule,
+    TrainingRoutingModule,
     BrowserAnimationsModule,
-    UserListMainModule,
-    VehicleListMainModule
+    TrainingModule,
   ],
   bootstrap: [AppComponent]
 })

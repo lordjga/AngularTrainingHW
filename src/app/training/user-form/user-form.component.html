@@ -1,0 +1,59 @@
+<section>
+  <ng-container [formGroup]="userFormGroup">
+    <div class="example-element">
+      <mat-form-field>
+        <mat-label for="firstName">First Name: </mat-label>
+        <input matInput type="text" name="firstName" formControlName="firstName">
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label for="lastName">Last Name: </mat-label>
+        <input matInput type="text" name="lastName" formControlName="lastName">
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label for="age">Age: </mat-label>
+        <input matInput type="number" name="age" formControlName="age">
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label for="company">Company: </mat-label>
+        <input matInput type="text" name="company" formControlName="company">
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label for="email">Email: </mat-label>
+        <input matInput type="email" name="email" formControlName="email">
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label for="department">Department:</mat-label>
+        <mat-select name="department" formControlName="department">
+          <mat-option>--</mat-option>
+          <mat-option *ngFor="let dep of departments" [value]="dep">{{dep}}</mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <div>
+        <mat-label for="gender">Gender:</mat-label>
+        <div>
+          <mat-radio-group name="gender" formControlName="gender">
+            <mat-radio-button *ngFor="let gender of GenderValues" [value]="gender">
+              {{gender}}
+            </mat-radio-button>
+            <!--<mat-radio-button value="Gender.male" color="primary">Male</mat-radio-button>
+            <mat-radio-button value="Gender.female" color="primary">Female</mat-radio-button>-->
+          </mat-radio-group>
+        </div>
+      </div>
+
+      <div>
+        <mat-label for="activated">Activated:</mat-label>
+        <div>
+          <mat-checkbox name="activated" formControlName="activated"></mat-checkbox>
+        </div>
+      </div>
+    </div>
+  </ng-container>
+  <button mat-stroked-button (click)="getFormGroupValue()">Save</button>
+</section>

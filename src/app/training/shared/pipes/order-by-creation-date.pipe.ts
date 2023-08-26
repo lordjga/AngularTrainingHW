@@ -1,5 +1,5 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import { User } from '../../user-list-main/model/user.model';
+import { User } from '../model/user.model';
 
 @Pipe({
   name: 'orderByCreationDate'

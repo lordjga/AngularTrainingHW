@@ -5,11 +5,12 @@
     "\\src\\app",
     "\\src\\app\\training",
     "\\src\\app\\training\\shared",
-    "\\src\\app\\training\\shared\\card-module",
-    "\\src\\app\\training\\shared\\card-module\\card",
-    "\\src\\app\\training\\shared\\card-module\\favorite-list",
-    "\\src\\app\\training\\vehicle-list-main",
-    "\\src\\app\\training\\vehicle-list-main\\vehicle-list-view"
+    "\\src\\app\\training\\shared\\model",
+    "\\src\\app\\training\\user-form",
+    "\\src\\app\\training\\user-list-main",
+    "\\src\\assets",
+    "\\src\\assets\\styles"
   ],
+  "SelectedNode": "\\src\\app\\training\\shared\\model\\user.model.ts",
   "PreviewInSolutionExplorer": false
 }

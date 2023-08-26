@@ -1,0 +1,15 @@
+.modal-content-wrapper {
+  display: flex;
+  justify-content: center;
+  height: 100%;
+  flex-direction: column;
+
+  .modal-content {
+    flex: 1;
+  }
+
+  .modal-actions {
+    text-align: right;
+    justify-content: end;
+  }
+}
