@@ -78,8 +78,12 @@
           <mat-checkbox name="activated" formControlName="activated"></mat-checkbox>
         </div>
       </div>
+
+      <div>
+        <app-addresses-form [form]="addressesGroup"></app-addresses-form>
+      </div>
     </div>
   </ng-container>
-  <mat-error *ngIf="userFormGroup.hasError">From isn't valid</mat-error>
-  <button mat-stroked-button (click)="getFormGroupValue()">Save</button>
+  <mat-error *ngIf="userFormGroup.invalid">From isn't valid</mat-error>
+  <button mat-raised-button color="primary" (click)="getFormGroupValue()">Save</button>
 </section>

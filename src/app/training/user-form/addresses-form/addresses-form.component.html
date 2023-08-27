@@ -1,0 +1,11 @@
+<ng-container [formGroup]="form">
+  <ng-container formArrayName="addresses">
+    <ng-container *ngFor="let address of addresses.controls; let i = index">
+      <div>
+        <app-address-form [form]="address"></app-address-form>
+      </div>
+      <button mat-stroked-button color="warn" (click)="removeAddress(i)">Remove Address</button>
+    </ng-container>
+  </ng-container>
+  <button mat-stroked-button (click)="addNewAddress()">Add new Address</button>
+</ng-container>

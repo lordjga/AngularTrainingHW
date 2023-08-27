@@ -2,8 +2,8 @@
   <p >
     {{card.title}}
   </p>
-  <p>Description:               {{card.description}}</p>
-  <p>Additional info:           {{card.additionalInfo}}</p>
+  <p innerHTML="Description: {{card.description}}"></p>
+  <p innerHTML="Additional info: {{card.additionalInfo}}"></p>
   <p>
     <button mat-raised-button color="primary" (click)="onSwitchFavorClick(card)">Add to Favorite/Remove from Favorite</button>
     <button mat-raised-button color="primary" (click)="onDeleteClick(card)">Delete</button>

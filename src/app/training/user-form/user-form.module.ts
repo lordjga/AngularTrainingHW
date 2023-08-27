@@ -8,10 +8,14 @@ import { MatInputModule } from '@angular/material/input';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatRadioModule } from '@angular/material/radio';
 import { MatButtonModule } from '@angular/material/button';
+import { AddressesFormComponent } from './addresses-form/addresses-form.component';
+import { AddressFormComponent } from './addresses-form/address-form/address-form.component';
 
 @NgModule({
   declarations: [
-    UserFormComponent
+    UserFormComponent,
+    AddressesFormComponent,
+    AddressFormComponent
   ],
   imports: [
     CommonModule,
