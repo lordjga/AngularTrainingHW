@@ -8,27 +8,29 @@ import { MatInputModule } from '@angular/material/input';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatRadioModule } from '@angular/material/radio';
 import { MatButtonModule } from '@angular/material/button';
+import { MatDialogModule } from '@angular/material/dialog';
 import { AddressesFormComponent } from './addresses-form/addresses-form.component';
 import { AddressFormComponent } from './addresses-form/address-form/address-form.component';
 
 @NgModule({
-  declarations: [
-    UserFormComponent,
-    AddressesFormComponent,
-    AddressFormComponent
-  ],
-  imports: [
-    CommonModule,
-    FormsModule,
-    ReactiveFormsModule,
-    MatSelectModule,
-    MatInputModule,
-    MatCheckboxModule,
-    MatRadioModule,
-    MatButtonModule
-  ],
-  exports: [
-    UserFormComponent,
-  ]
+    declarations: [
+        UserFormComponent,
+        AddressesFormComponent,
+        AddressFormComponent
+    ],
+    imports: [
+        CommonModule,
+        FormsModule,
+        ReactiveFormsModule,
+        MatSelectModule,
+        MatInputModule,
+        MatCheckboxModule,
+        MatRadioModule,
+        MatButtonModule,
+        MatDialogModule
+    ],
+    exports: [
+        UserFormComponent,
+    ]
 })
 export class UserFormModule { }

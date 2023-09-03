@@ -5,7 +5,7 @@
         <ng-container *ngFor="let user of users">
             <li>
                 <div class="inlineDiv">
-                    <app-card [card]="user" (deleteClick)="delete($event)" (favorClick)="addToFavor($event)">
+                    <app-card [card]="user" (deleteClick)="delete($event)" (favorClick)="addToFavor($event)" (redirectClick)="redirectToEditUserPage($event)">
                     </app-card>
                 </div>
             </li>

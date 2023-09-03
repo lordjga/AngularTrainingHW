@@ -1,27 +1,43 @@
 import { Injectable } from "@angular/core";
 import { usersInitialData } from "./user-data";
-import { departments, Gender, User } from "./user.model";
+import { User } from "./user.model";
 
 @Injectable({
-  providedIn: 'root'
+    providedIn: 'root'
 })
 
 export class UserService {
-  users: Array<User> = [];
+    private users: Array<User> = [];
 
-  constructor() {
-    this.users = usersInitialData;
-  }
+    constructor() {
+        this.users = usersInitialData;
+    }
 
-  get getUserData(): Array<User> {
-    return this.users;
-  }
+    get getUserData(): Array<User> {
+        return this.users;
+    }
 
-  async getUserDataAsync(): Promise<User[]> {
-    return this.users;
-  }
+    async getUserDataAsync(): Promise<User[]> {
+        return this.users;
+    }
 
-  AddNewUser(user: User) {
-    this.users.push(user);
-  }
+    getUserById(userId: number): Promise<User | undefined> {
+        return this.getUserDataAsync()
+            .then(users => users.find(user => user.id === userId));
+    }
+
+    AddNewUser(user: User) {
+        user.id = this.generateId();
+        this.users.push(user);
+    }
+
+    UpdateUser(user: User) {
+        if (user) {
+            this.getUserById(user.id).then(x => x = user);
+        }
+    }
+
+    private generateId(): number {
+        return this.users.sort(x => x.id).pop()?.id ?? + 1;
+    }
 }

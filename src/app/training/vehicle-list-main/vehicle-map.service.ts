@@ -12,6 +12,7 @@ export class VehicleMapService {
   public get vehiclesCards(): Card[] {
     var vehiclesData = vehicles;
     var cards: Card[] = vehiclesData.map(x => ({
+      id: 1,
       title: 'Vehicle: ' + x.model,
       description: 'Color: ' + x.color,
       additionalInfo: 'Year: ' + x.releaseYear + ' license: ' + x.licenseNumber

@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { CardComponent } from './card/card.component';
 import { MatButtonModule } from '@angular/material/button';
 import { FavoriteListComponent } from './favorite-list/favorite-list.component';
+import { MatIconModule } from '@angular/material/icon';
 
 @NgModule({
   declarations: [
@@ -11,7 +12,8 @@ import { FavoriteListComponent } from './favorite-list/favorite-list.component';
   ],
   imports: [
     CommonModule,
-    MatButtonModule
+    MatButtonModule,
+    MatIconModule
   ],
   exports:[
     CardComponent,

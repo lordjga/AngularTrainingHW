@@ -1,4 +1,5 @@
 export interface User {
+    id: number,
     firstName: string,
     lastName: string,
     age: number,
@@ -9,7 +10,7 @@ export interface User {
     activated: boolean,
     dateOfCreation: Date,
     salary: number,
-    addresses: Address[]
+    addressesGroup: { addresses: Address[] }
 }
 
 export enum Gender {

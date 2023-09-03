@@ -18,11 +18,12 @@ export class UserMapService {
     public convertUsersToCards(users: Array<User>): Card[] {
         var usersData = this.orderByCreationDatePipe.transform(users);
         var cards: Card[] = usersData.map(x => ({
+            id: x.id,
             title: 'User: ' + this.fullNamePipe.transform(x.firstName, x.lastName),
             description: 'Age: ' + x.age + ', Gender: ' + Gender[x.gender] + ', Email: ' + x.email,
             additionalInfo: 'Date of Creation: ' + this.datePipe.transform(x.dateOfCreation, "MM/dd/yyyy")
                 + '<br/>' + 'Company: ' + x.company + ', Department: ' + x.department + ', Salary: ' + x.salary
-                + this.addAddresses(x.addresses)
+                + this.addAddresses(x.addressesGroup.addresses)
         }))
         return cards;
     }

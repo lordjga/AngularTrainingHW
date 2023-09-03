@@ -8,9 +8,9 @@
     "\\src\\app\\training\\shared\\model",
     "\\src\\app\\training\\user-form",
     "\\src\\app\\training\\user-list-main",
-    "\\src\\assets",
-    "\\src\\assets\\styles"
+    "\\src\\app\\training\\user-list-main\\user-list-view",
+    "\\src\\app\\training\\vehicle-list-main"
   ],
-  "SelectedNode": "\\src\\app\\training\\shared\\model\\user.model.ts",
+  "SelectedNode": "\\src\\app\\training\\training-routes.config.ts",
   "PreviewInSolutionExplorer": false
 }

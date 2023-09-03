@@ -1,5 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { Address } from '../../shared/model/user.model';
 import { AddressItem } from '../user-form.component';
 
 @Component({
@@ -20,8 +21,18 @@ export class AddressesFormComponent {
         this.addresses.push(this.getEmptyAddressForm());
     }
 
+    public addExistsAddress(address: Address): void {
+        let emptyForm = this.getEmptyAddressForm();
+        emptyForm.patchValue(<Partial<Address>>address)
+        this.addresses.push(emptyForm);
+    }
+
     public removeAddress(index: number): void {
         this.addresses.removeAt(index);
+    }
+
+    public removeAllAddresses(): void {
+        this.addresses.clear();
     }
 
     private getEmptyAddressForm(): FormGroup<AddressItem> {
