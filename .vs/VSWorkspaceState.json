@@ -4,13 +4,13 @@
     "\\src",
     "\\src\\app",
     "\\src\\app\\training",
-    "\\src\\app\\training\\shared",
-    "\\src\\app\\training\\shared\\model",
-    "\\src\\app\\training\\user-form",
-    "\\src\\app\\training\\user-list-main",
-    "\\src\\app\\training\\user-list-main\\user-list-view",
-    "\\src\\app\\training\\vehicle-list-main"
+    "\\src\\app\\training\\core",
+    "\\src\\app\\training\\core\\auth",
+    "\\src\\app\\training\\core\\auth\\login",
+    "\\src\\app\\training\\core\\auth\\registration",
+    "\\src\\app\\training\\core\\auth\\routing",
+    "\\src\\app\\training\\shared"
   ],
-  "SelectedNode": "\\src\\app\\training\\training-routes.config.ts",
+  "SelectedNode": "\\src\\app\\training\\core\\auth\\login\\login.component.ts",
   "PreviewInSolutionExplorer": false
 }

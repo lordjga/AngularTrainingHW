@@ -1,0 +1,17 @@
+.login-wrapper {
+    display: flex;
+    align-content: center;
+    align-items: center;
+    justify-content: center;
+    height: 90%;
+    overflow: hidden;
+
+    mat-card {
+        padding: 10px;
+        align-items: center;
+    }
+}
+
+:host ::ng-deep .actions-wrapper {
+    text-align: center;
+}

@@ -1,0 +1,9 @@
+<mat-toolbar class="main-toolbar" color="primary">
+    <nav>
+        <a routerLink="./user-list" routerLinkActive="active"><span>UserList</span></a>
+        <a routerLink="./user" routerLinkActive="active"><span>AddNewUser</span></a>
+    </nav>
+    <div class="logout-wrapper">
+        <mat-icon (click)="logOut()">exit_to_app</mat-icon>
+    </div>
+</mat-toolbar>

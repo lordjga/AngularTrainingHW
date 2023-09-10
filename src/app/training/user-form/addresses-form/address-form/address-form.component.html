@@ -12,8 +12,8 @@
   </mat-form-field>
   <mat-form-field>
     <mat-label for="zip">Zip: </mat-label>
-    <input matInput [disabled]="isZipEnable" type="text" name="zip" formControlName="zip">
-    <mat-error *ngIf="form.get('zip')?.hasError('required') && isZipEnable">
+    <input matInput  type="text" name="zip" formControlName="zip">
+    <mat-error *ngIf="form.get('zip')?.hasError('required')">
       Zip is <strong>required</strong>
     </mat-error>
   </mat-form-field>

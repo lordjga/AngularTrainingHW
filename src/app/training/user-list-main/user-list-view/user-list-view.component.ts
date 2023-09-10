@@ -34,7 +34,7 @@ export class UserListViewComponent {
 
     redirectToEditUserPage(userId: number) {
         this.router.navigate(
-            ['edit-user-page', userId]
+            ['user/edit-user-page', userId]
         )
     }
 }

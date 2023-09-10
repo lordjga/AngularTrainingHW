@@ -36,10 +36,27 @@ export class AddressesFormComponent {
     }
 
     private getEmptyAddressForm(): FormGroup<AddressItem> {
-        return this.fb.group<AddressItem>({
+        return this.fb.group({
             city: this.fb.nonNullable.control(''),
             zip: this.fb.nonNullable.control('', [Validators.required]),
             addressLine: this.fb.nonNullable.control('', [Validators.required])
-        })
+        }, { validators: [addressFormValidator] })
     }
 }
+export const addressFormValidator = (formGroup: FormGroup<AddressItem>) => {
+    const addressLineControl = formGroup.get('addressLine');
+    const cityControl = formGroup.get('city');
+    const zipControl = formGroup.get('zip');
+  
+    const options = {onlySelf: true};
+    {
+        if (cityControl?.value ) {
+            zipControl?.enable(options);
+        }
+    
+        if (!cityControl?.value) {
+            zipControl?.setValue('', options);
+            zipControl?.disable(options);
+        }
+      } 
+  }

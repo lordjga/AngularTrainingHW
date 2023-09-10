@@ -11,6 +11,8 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatDialogModule } from '@angular/material/dialog';
 import { AddressesFormComponent } from './addresses-form/addresses-form.component';
 import { AddressFormComponent } from './addresses-form/address-form/address-form.component';
+import { RouterModule } from '@angular/router';
+import { USER_FORM_ROUTES } from './routing/user-form-routing.module';
 
 @NgModule({
     declarations: [
@@ -22,6 +24,7 @@ import { AddressFormComponent } from './addresses-form/address-form/address-form
         CommonModule,
         FormsModule,
         ReactiveFormsModule,
+        RouterModule.forChild(USER_FORM_ROUTES),
         MatSelectModule,
         MatInputModule,
         MatCheckboxModule,

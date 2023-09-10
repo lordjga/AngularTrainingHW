@@ -30,7 +30,7 @@ export class UserFormComponent implements AfterViewInit {
     public userIdRouteParam: string | null = null;
     private componentActive: boolean = true;
     private currentUser: User | undefined;
-    private canGo = false;
+    private isFormSaved = false;
 
     public userFormGroup = new FormGroup({
         firstName: new FormControl('', [Validators.required]),
@@ -74,7 +74,7 @@ export class UserFormComponent implements AfterViewInit {
 
     public async getCanGoFromPage(): Promise<boolean> {
         let bool = true;
-        if (this.userFormGroup.dirty) {
+        if (this.userFormGroup.dirty && !this.isFormSaved) {
             bool = await this.openPopup();
         }
         return bool;
@@ -107,7 +107,7 @@ export class UserFormComponent implements AfterViewInit {
                 this.userService.UpdateUser(this.convertFormGroupToUser());
 
             this.userService.AddNewUser(this.convertFormGroupToUser());
-
+            this.isFormSaved = true;
             this.redirectToUserListPage();
         }
         else {
