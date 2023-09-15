@@ -1,6 +1,8 @@
 import { Injectable } from "@angular/core";
-import { usersInitialData } from "./user-data";
-import { User } from "./user.model";
+import { ActivatedRoute } from "@angular/router";
+import { User } from "../../shared/model/user.model";
+import { UserMapService } from "../../user-list-main/services/user-map.service";
+import { UserApiService } from "./user-api.service";
 
 @Injectable({
     providedIn: 'root'
@@ -9,8 +11,8 @@ import { User } from "./user.model";
 export class UserService {
     private users: Array<User> = [];
 
-    constructor() {
-        this.users = usersInitialData;
+    constructor(private userApiService: UserApiService, private userMapService: UserMapService, private activatedRoute: ActivatedRoute) {
+        this.userApiService.getRandomUsers().subscribe(result => this.users = this.userMapService.convertRequestToUsers(result))
     }
 
     get getUserData(): Array<User> {
@@ -21,7 +23,7 @@ export class UserService {
         return this.users;
     }
 
-    getUserById(userId: number): Promise<User | undefined> {
+    getUserById(userId: any): Promise<User | undefined> {
         return this.getUserDataAsync()
             .then(users => users.find(user => user.id === userId));
     }

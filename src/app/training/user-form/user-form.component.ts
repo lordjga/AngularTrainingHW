@@ -4,8 +4,8 @@ import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute, Router } from '@angular/router';
 import { takeWhile } from 'rxjs';
 import { Address, departments, Gender, User } from '../shared/model/user.model';
-import { UserService } from '../shared/model/user.service';
 import { StandartPopupComponent } from '../shared/popup/standart-popup/standart-popup.component';
+import { UserService } from '../user-list-main/services/user.service';
 import { AddressesFormComponent } from './addresses-form/addresses-form.component';
 
 export interface AddressItem {
@@ -61,7 +61,7 @@ export class UserFormComponent implements AfterViewInit {
 
     ngAfterViewInit(): void {
         if (this.isEditMode && this.userIdRouteParam) {
-            this.userService.getUserById(+this.userIdRouteParam).then(
+            this.userService.getUserById(this.userIdRouteParam).then(
                 user => {
                     if (user) {
                         this.currentUser = user;
