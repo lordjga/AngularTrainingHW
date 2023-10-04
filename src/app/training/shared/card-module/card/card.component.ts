@@ -6,8 +6,9 @@ import { Card } from './card.model';
     templateUrl: './card.component.html',
     styleUrls: ['./card.component.css']
 })
-export class CardComponent{
+export class CardComponent {
     @Input() card!: Card;
+    @Input() isFavorCard = false;
 
     @Output() deleteClick: EventEmitter<Card> = new EventEmitter<Card>();
     @Output() favorClick: EventEmitter<Card> = new EventEmitter<Card>();

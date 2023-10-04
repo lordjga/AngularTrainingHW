@@ -24,7 +24,7 @@ export class RegistrationComponent {
         private router: Router,) { }
 
     public onSubmit() {
-        const { userName, password } = this.registrFormGroup.getRawValue()
+        const { userName, password } = this.registrFormGroup.getRawValue() 
 
         if (userName === null || password === null)
             return;

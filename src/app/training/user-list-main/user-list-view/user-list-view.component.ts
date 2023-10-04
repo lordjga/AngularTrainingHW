@@ -1,7 +1,7 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Card } from '../../shared/card-module/card/card.model';
-import { FavoriteService } from '../../shared/card-module/favorite-list/favorite.service';
+import { FavoriteService } from '../services/favorite.service';
 
 @Component({
     selector: 'app-user-list-view',
@@ -9,8 +9,10 @@ import { FavoriteService } from '../../shared/card-module/favorite-list/favorite
     styleUrls: ['./user-list-view.component.css']
 })
 export class UserListViewComponent {
-    @Input() users: Array<Card> = [];
+    @Input() users: Array<Card> | null = [];
 
+    @Output() deleteClick: EventEmitter<Card> = new EventEmitter<Card>();
+    
     label: string = 'User list View Component';
     public isShowOnlyActivated = false;
 
@@ -18,10 +20,7 @@ export class UserListViewComponent {
     }
 
     delete(user: Card) {
-        var index = this.users.indexOf(user)
-        if (index > -1) {
-            this.users.splice(index, 1);
-        }
+        this.deleteClick.emit(user);
     }
 
     isShowUser(isUserActivated: boolean): boolean {

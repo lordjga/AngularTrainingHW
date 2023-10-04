@@ -1,4 +1,8 @@
 <div>
-  <div style="display: inline-block; vertical-align: top; "><app-user-list-view [users]="getUsersCards"></app-user-list-view></div>
-  <div style="display: inline-block; vertical-align: top; "><app-favorite-list></app-favorite-list></div>
+  <div style="display: inline-block; vertical-align: top; ">
+    <app-user-list-view (deleteClick)="delete($event)" [users]="getUsersCards$ | async"></app-user-list-view>
+  </div>
+  <div style="display: inline-block; vertical-align: top; ">
+    <app-favorite-list [favorites]="getFavorCards$ | async"></app-favorite-list>
+  </div>
 </div>

@@ -1,0 +1,17 @@
+<div>
+    <h1>{{label}}</h1>
+
+    <ul>
+        <ng-container *ngFor="let favorite of favorites">
+            <li>
+                <div class="inlineDiv">
+                    <app-card [isFavorCard]="true"
+                              [card]="favorite"
+                              (deleteClick)="delete($event)"
+                              (redirectClick)="redirectToEditUserPage($event)">
+                    </app-card>
+                </div>
+            </li>
+        </ng-container>
+    </ul>
+</div>

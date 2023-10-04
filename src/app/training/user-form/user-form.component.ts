@@ -2,8 +2,8 @@ import { AfterViewInit, Component, ViewChild } from '@angular/core';
 import { AbstractControl, AsyncValidatorFn, FormArray, FormControl, FormGroup, ValidationErrors, ValidatorFn, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute, Router } from '@angular/router';
-import { takeWhile } from 'rxjs';
-import { Address, departments, Gender, User } from '../shared/model/user.model';
+import { Observable, delay, first, firstValueFrom, from, takeWhile } from 'rxjs';
+import { Address, Gender, User, departments } from '../shared/model/user.model';
 import { StandartPopupComponent } from '../shared/popup/standart-popup/standart-popup.component';
 import { UserService } from '../user-list-main/services/user.service';
 import { AddressesFormComponent } from './addresses-form/addresses-form.component';
@@ -61,23 +61,23 @@ export class UserFormComponent implements AfterViewInit {
 
     ngAfterViewInit(): void {
         if (this.isEditMode && this.userIdRouteParam) {
-            this.userService.getUserById(this.userIdRouteParam).then(
-                user => {
-                    if (user) {
-                        this.currentUser = user;
+            from(this.userService.getUserByIdPromise(this.userIdRouteParam))
+                .pipe(first(), delay(5000))
+                .subscribe(user => {
+                    if(user){
+                        this.currentUser = user; 
                         this.patchValueToForm(user);
                     }
-                }
-            );
+                });
         }
     }
 
     public async getCanGoFromPage(): Promise<boolean> {
-        let bool = true;
+        let canGoFromPage = true;
         if (this.userFormGroup.dirty && !this.isFormSaved) {
-            bool = await this.openPopup();
+            await firstValueFrom(this.openPopup()).then(res => canGoFromPage = res);
         }
-        return bool;
+        return canGoFromPage;
     }
 
     public resetForm() {
@@ -103,10 +103,19 @@ export class UserFormComponent implements AfterViewInit {
         console.log('Form Group Raw value:', this.userFormGroup.getRawValue())
 
         if (!this.userFormGroup.invalid) {
-            if (this.isEditMode)
-                this.userService.UpdateUser(this.convertFormGroupToUser());
-
-            this.userService.AddNewUser(this.convertFormGroupToUser());
+            if (this.isEditMode){
+                this.userService.UpdateUser(this.convertFormGroupToUser()).pipe(first()).subscribe({
+                    next: (value) => { console.log('Updated:', value) },
+                    error: (error) => { console.error('There is some error: ', error) },
+                    complete: () => { console.log('Update Observable is completed') }
+                });
+            }
+            else
+                this.userService.AddNewUser(this.convertFormGroupToUser()).pipe(first()).subscribe({
+                    next: (value) => { console.log('Added:', value) },
+                    error: (error) => { console.error('There is some error: ', error) },
+                    complete: () => { console.log('Add Observable is completed') }
+                });
             this.isFormSaved = true;
             this.redirectToUserListPage();
         }
@@ -143,14 +152,14 @@ export class UserFormComponent implements AfterViewInit {
         this.router.navigate(['user-list'])
     }
 
-    private openPopup(): Promise<boolean> {
+    private openPopup(): Observable<boolean> {
         const dialogRef = this.dialog.open(StandartPopupComponent, {
             data: {
                 title: 'You have unsaved data',
                 message: 'Are you sure you want to leave this page without saving?',
             },
         });
-        return dialogRef.afterClosed().toPromise().then(result => { return Promise.resolve(result) });
+        return dialogRef.afterClosed();
     }
 
     //"validation region"

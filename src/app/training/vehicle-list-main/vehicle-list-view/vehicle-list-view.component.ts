@@ -1,6 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { Card } from '../../shared/card-module/card/card.model';
-import { FavoriteService } from '../../shared/card-module/favorite-list/favorite.service';
+import { FavoriteService } from '../../user-list-main/services/favorite.service';
 
 @Component({
   selector: 'app-vehicle-list-view',

@@ -1,13 +1,13 @@
 <div class="container">
-  <p>
-    {{card.title}}
-  </p>
-  <p innerHTML="Description: {{card.description}}"></p>
-  <p innerHTML="Additional info: {{card.additionalInfo}}"></p>
-  <p>
-    <button mat-raised-button color="primary" (click)="onSwitchFavorClick(card)">Add to Favorite/Remove from Favorite</button>
-    <button mat-raised-button color="accent" (click)="redirectToEdit()"><mat-icon>edit</mat-icon>Edit</button>
-    <button mat-raised-button color="primary" (click)="onDeleteClick(card)">Delete</button>
-  </p>
+    <p>
+        {{card.title}}
+    </p>
+    <p innerHTML="Description: {{card.description}}"></p>
+    <p innerHTML="Additional info: {{card.additionalInfo}}"></p>
+    <p>
+        <button mat-raised-button color="primary" *ngIf="!isFavorCard" (click)="onSwitchFavorClick(card)">Add to Favorite list</button>
+        <button mat-raised-button color="accent" (click)="redirectToEdit()"><mat-icon>edit</mat-icon>Edit</button>
+        <button mat-raised-button color="primary" (click)="onDeleteClick(card)">Delete</button>
+    </p>
 </div>
 
